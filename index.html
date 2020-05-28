@@ -10,6 +10,8 @@
           <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
           <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
           <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+          <script src="//cdn.jsdelivr.net/gh/donmccurdy/aframe-physics-system@v3.2.0/dist/aframe-physics-system.min.js"></script>
+
           <!-- ocmmean -->
           <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
      </head>
@@ -18,25 +20,42 @@
 
           <a-scene
                vr-mode-ui="enabled: false"
-               physics="debug: true"
-               renderer="gammaOutput: true"
+               physics="debug: true; gravity: -100;"
           >
                <a-entity environment="preset: forest"
                     ><a-grid static-body position="0 -0.01 0"></a-grid>
                </a-entity>
                <a-entity
                     id="rig"
-                    kinematic-body="mass:10"
-                    jump-ability
                     movement-controls="constrainToNavMesh: true"
+                    jump-ability=" distance:1; "
                     enableDoubleJump="true"
-                    maxJumps="3"
+                    ;
+                    static-body="mass:10"
                >
                     >
                     <a-entity
                          camera
                          look-controls="pointerLockEnabled: true;"
                          position="0 1.6 0"
+                    >
+                         <a-entity
+                              id="cursor"
+                              cursor="fuse: true; maxDistance:5; timeout: 1"
+                              raycaster
+                         ></a-entity>
+                         <a-animation
+                              attribute="position"
+                              begin="roof"
+                              dur="0"
+                              to="134 8 2.1"
+                         ></a-animation>
+                         <a-animation
+                              attribute="position"
+                              begin="start"
+                              dur="0"
+                              to="125 1.8 2.1"
+                         ></a-animation
                     ></a-entity>
                </a-entity>
 
