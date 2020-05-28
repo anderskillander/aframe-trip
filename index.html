@@ -1,82 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
      <head>
-          <meta charset="UTF-8" />
-          <meta
-               name="viewport"
-               content="width=device-width, initial-scale=1.0"
-          />
-          <title>Document</title>
-          <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
-          <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
-          <script src="//cdn.jsdelivr.net/gh/donmccurdy/aframe-physics-system@v3.2.0/dist/aframe-physics-system.min.js"></script>
-
-          <!-- ocmmean -->
-          <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+          <script src="https://aframe.io/releases/0.2.0/aframe.js"></script>
+          <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v1.14.0/dist/aframe-extras.min.js"></script>
      </head>
      <body>
-          <!-- <ctrl> + <alt> + i  for aframe inspector-->
-
-          <a-scene
-               vr-mode-ui="enabled: false"
-               physics="debug: true; gravity: -100;"
-          >
-               <a-entity environment="preset: forest"
-                    ><a-grid static-body position="0 -0.01 0"></a-grid>
-               </a-entity>
-               <a-entity
-                    id="rig"
-                    movement-controls="constrainToNavMesh: true"
-                    jump-ability=" distance:1; "
-                    enableDoubleJump="true"
-                    ;
-                    static-body="mass:10"
-               >
-                    >
+          <a-scene>
+               <!-- Camera -->
+               <a-entity id="rig" movement-controls="constrainToNavMesh: true">
                     <a-entity
+                         id="camera"
                          camera
-                         look-controls="pointerLockEnabled: true;"
-                         position="0 1.6 0"
-                    >
-                         <a-entity
-                              id="cursor"
-                              cursor="fuse: true; maxDistance:5; timeout: 1"
-                              raycaster
-                         ></a-entity>
-                         <a-animation
-                              attribute="position"
-                              begin="roof"
-                              dur="0"
-                              to="134 8 2.1"
-                         ></a-animation>
-                         <a-animation
-                              attribute="position"
-                              begin="start"
-                              dur="0"
-                              to="125 1.8 2.1"
-                         ></a-animation
+                         universal-controls
+                         kinematic-body
+                         jump-ability="enableDoubleJump: true; distance: 3;"
+                         position="0 1.8 45"
+                         look-controls="enabled: true"
+                         rotation="90 0 0"
                     ></a-entity>
                </a-entity>
-
-               <a-box
-                    width="4"
-                    height="2"
-                    depth="4"
-                    position="0 0 -10"
-                    color="#000000"
-                    dynamic-body="mass:10"
-               ></a-box>
-          </a-scene>
-
-          <!-- <a-scene environment="preset: forest" id="environment" kinematic-body>
+               <!-- Floor -->
+               <a-box width="10" height="10" depth="10" dynamic-body></a-box>
                <a-entity
-                    movement-controls="constrainToNavMesh: true"
-                    camera
                     static-body
-                    position="0 1.6 0"
-                    look-controls="pointerLockEnabled: true"
+                    geometry="primitive: plane; height: 5000; width: 5000"
+                    position="0 -0.5 -5"
+                    rotation="-90 0 0"
+                    material="shader: flat; src: url(assets/dirt.jpg); repeat: 2001 2001"
                ></a-entity>
-          </a-scene> -->
+               <!-- Lighting and Background -->
+               <a-sky color="lightblue" radius="5000"></a-sky>
+          </a-scene>
      </body>
 </html>
